@@ -5,19 +5,9 @@ import MenuAnchor from "./MenuAnchor";
 import CategoriesButton from "./CategoriesButton";
 import Categories from "./Categories";
 import ThemeButton from "./ThemeButton";
-import { menuAnchors } from "../../../data/layout";
+import { menuAnchors } from "data/layout";
 
-const categories = [
-    "Todas",
-    "Buzos",
-    "Camisas",
-    "Camperas",
-    "Remerones",
-    "Sudaderas",
-    "Zapatillas",
-];
-
-const Menu = () => {
+const Menu = ({ categories }: MenuProps) => {
     const [showCategories, setShowCategories] = useState(false);
 
     return (
