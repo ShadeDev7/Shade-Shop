@@ -1,16 +1,5 @@
-/// <reference types="react" />
-
-type IndexProps = {
-    categories: Category[];
-};
-
 type LayoutProps = {
-    categories: Category[];
-    children: React.ReactNode;
-};
-
-type MenuProps = {
-    categories: Category[];
+    children: ReactNode;
 };
 
 type MenuAnchorProps = {
@@ -21,8 +10,6 @@ type MenuAnchorProps = {
     children: ReactNode;
 };
 
-type CategoriesProps = {
-    categories: Category[];
-    showCategories: boolean;
-    setShowCategories: (newValue: boolean) => void;
+type AppProviderProps = {
+    children: ReactNode;
 };

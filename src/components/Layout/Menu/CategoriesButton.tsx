@@ -1,10 +1,10 @@
-const CategoriesButton = ({
-    showCategories,
-    setShowCategories,
-}: {
-    showCategories: boolean;
-    setShowCategories: (newValue: boolean) => void;
-}) => {
+import { useContext } from "react";
+
+import AppContext from "context/AppContext";
+
+const CategoriesButton = () => {
+    const { showCategories, setShowCategories } = useContext(AppContext);
+
     return (
         <button
             aria-label="Categorías"

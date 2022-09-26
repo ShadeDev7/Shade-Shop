@@ -1,14 +1,15 @@
-import { useState } from "react";
+import { useContext } from "react";
 import Link from "next/link";
 
+import AppContext from "context/AppContext";
 import MenuAnchor from "./MenuAnchor";
 import CategoriesButton from "./CategoriesButton";
 import Categories from "./Categories";
 import ThemeButton from "./ThemeButton";
 import { menuAnchors } from "data/layout";
 
-const Menu = ({ categories }: MenuProps) => {
-    const [showCategories, setShowCategories] = useState(false);
+const Menu = () => {
+    const { showCategories } = useContext(AppContext);
 
     return (
         <>
@@ -28,10 +29,7 @@ const Menu = ({ categories }: MenuProps) => {
                 </Link>
 
                 <div className="md:hidden">
-                    <CategoriesButton
-                        showCategories={showCategories}
-                        setShowCategories={setShowCategories}
-                    />
+                    <CategoriesButton />
                 </div>
 
                 <ThemeButton />
@@ -39,11 +37,7 @@ const Menu = ({ categories }: MenuProps) => {
                 <div className="hidden md:order-4 md:flex md:flex-col md:items-center md:pb-2">
                     <h2 className="text-lg font-bold text-indigo-600">Categorías</h2>
 
-                    <Categories
-                        categories={categories}
-                        showCategories={showCategories}
-                        setShowCategories={setShowCategories}
-                    />
+                    <Categories />
                 </div>
 
                 <div className="hidden md:order-5 md:flex md:flex-col md:gap-2">
@@ -63,13 +57,7 @@ const Menu = ({ categories }: MenuProps) => {
                 </div>
             </div>
 
-            {showCategories && (
-                <Categories
-                    categories={categories}
-                    showCategories={showCategories}
-                    setShowCategories={setShowCategories}
-                />
-            )}
+            {showCategories && <Categories />}
         </>
     );
 };
