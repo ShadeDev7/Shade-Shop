@@ -8,6 +8,12 @@ export default function AppReducer(state: AppState, action: AppAction): AppState
                 categories: [...state.categories, ...payload],
             };
 
+        case "SET_CATEGORY":
+            return {
+                ...state,
+                category: payload,
+            };
+
         case "SET_SHOW_CATEGORIES":
             return {
                 ...state,

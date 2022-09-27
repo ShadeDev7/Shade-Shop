@@ -15,6 +15,13 @@ const AppProvider = ({ children }: AppProviderProps) => {
         });
     };
 
+    const setCategory = (category: Category) => {
+        dispatch({
+            type: "SET_CATEGORY",
+            payload: category,
+        });
+    };
+
     const setShowCategories = (newValue: boolean) => {
         dispatch({
             type: "SET_SHOW_CATEGORIES",
@@ -32,7 +39,7 @@ const AppProvider = ({ children }: AppProviderProps) => {
     }, []);
 
     return (
-        <AppContext.Provider value={{ ...state, setShowCategories }}>
+        <AppContext.Provider value={{ ...state, setCategory, setShowCategories }}>
             {children}
         </AppContext.Provider>
     );
