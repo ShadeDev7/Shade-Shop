@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 
 import db from "utils/db";
-import { Category } from "models";
+import { Product } from "models";
 
 db.connect();
 
@@ -11,18 +11,18 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     switch (method) {
         case "GET":
             try {
-                const categories = await Category.find();
+                const products = await Product.find();
 
-                return res.status(200).json({ categories });
+                return res.status(200).json({ products });
             } catch (e: any) {
                 return res.status(400).json({ msg: e.message });
             }
 
         case "POST":
             try {
-                const category = await new Category(body).save();
+                const product = await new Product(body).save();
 
-                return res.status(201).json({ category });
+                return res.status(201).json({ product });
             } catch (e: any) {
                 return res.status(400).json({ msg: e.message });
             }
@@ -32,10 +32,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                 const { id } = query;
 
                 if (!id) {
-                    throw new Error("You must supply an id to update a category!");
+                    throw new Error("You must supply an id to update a product!");
                 }
 
-                await Category.updateOne({ _id: id }, { $set: body });
+                await Product.updateOne({ _id: id }, { $set: body });
 
                 return res.status(204).end();
             } catch (e: any) {
@@ -47,10 +47,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                 const { id } = query;
 
                 if (!id) {
-                    throw new Error("You must supply an id to delete a category!");
+                    throw new Error("You must supply an id to delete a product!");
                 }
 
-                await Category.deleteOne({ _id: id });
+                await Product.deleteOne({ _id: id });
 
                 return res.status(204).end();
             } catch (e: any) {
