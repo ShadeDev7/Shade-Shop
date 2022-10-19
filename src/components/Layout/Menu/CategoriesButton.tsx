@@ -8,9 +8,7 @@ const CategoriesButton = () => {
     return (
         <button
             aria-label="Categorías"
-            className={`flex h-10 w-10 items-center justify-center rounded-full transition-colors duration-500 hover:bg-white [&>svg>g]:hover:fill-indigo-600 ${
-                showCategories ? "" : ""
-            }`}
+            className="grid h-10 w-10 place-items-center rounded-full transition-colors duration-500 hover:bg-white md:hidden [&>svg>g]:hover:fill-indigo-600"
             onClick={() => setShowCategories(!showCategories)}
         >
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="h-5 w-5">

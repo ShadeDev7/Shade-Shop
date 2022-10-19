@@ -13,3 +13,16 @@ type MenuAnchorProps = {
 type AppProviderProps = {
     children: ReactNode;
 };
+
+type ProductProps = {
+    product: Product;
+};
+
+type ProductDisplayProps = {
+    product: Product;
+};
+
+type ImageSliderProps = {
+    alt: string;
+    images: string[];
+};

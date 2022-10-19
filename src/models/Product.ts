@@ -13,7 +13,7 @@ const ProductSchema = new Schema(
             required: [true, "The product description is required!"],
             trim: true,
             minlength: [16, "The product description must have at least 16 characters!"],
-            maxlength: [256, "The product description can't be that long!"],
+            maxlength: [512, "The product description can't be that long!"],
         },
         categoryId: {
             type: Schema.Types.ObjectId,
@@ -26,12 +26,12 @@ const ProductSchema = new Schema(
         },
         stock: {
             type: Number,
-            required: [true, "The product must have a stock!"],
+            required: [true, "The product stock is required!"],
             min: [0, "The product stock can't be negative!"],
         },
-        image: {
-            type: String,
-            trim: true,
+        images: {
+            type: Array,
+            required: [true, "The product images are required!"],
         },
     },
     { versionKey: false }

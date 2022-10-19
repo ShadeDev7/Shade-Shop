@@ -1,7 +1,8 @@
 const initialState: AppState = {
-    categories: [{ _id: "0", name: "Todas" }],
-    category: { _id: "0", name: "Todas" },
+    categories: [{ _id: "", name: "Todas" }],
+    category: { _id: "", name: "Todas" },
     showCategories: false,
+    products: [],
 };
 
 export default initialState;

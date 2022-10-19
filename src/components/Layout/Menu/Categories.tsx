@@ -1,14 +1,18 @@
 import { useContext } from "react";
+import { useRouter } from "next/router";
 
 import AppContext from "context/AppContext";
 import CategoriesButton from "./CategoriesButton";
 
 const Categories = () => {
     const { categories, category, setCategory, setShowCategories } = useContext(AppContext);
+    const router = useRouter();
 
-    const handleClick = (category: Category) => {
-        setCategory(category);
+    const handleClick = (newCategory: Category) => {
+        setCategory(newCategory);
         setShowCategories(false);
+
+        if (router.pathname !== "/") router.push("/");
     };
 
     return (

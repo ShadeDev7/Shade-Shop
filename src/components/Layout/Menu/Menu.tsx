@@ -23,14 +23,12 @@ const Menu = () => {
                 </MenuAnchor>
 
                 <Link href="/">
-                    <a className="text-lg font-bold text-indigo-600 transition-colors duration-500 hover:text-indigo-700 md:order-1 md:text-xl">
+                    <a className="text-center text-xl font-bold text-indigo-600 transition-colors duration-500 hover:text-indigo-700 md:order-1 md:text-2xl">
                         Shade Shop
                     </a>
                 </Link>
 
-                <div className="md:hidden">
-                    <CategoriesButton />
-                </div>
+                <CategoriesButton />
 
                 <ThemeButton />
 
@@ -57,7 +55,7 @@ const Menu = () => {
                 </div>
             </div>
 
-            {showCategories && <Categories />}
+            <div className="md:hidden">{showCategories && <Categories />}</div>
         </>
     );
 };

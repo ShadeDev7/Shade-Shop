@@ -7,12 +7,9 @@ const connect = async () => {
 
     const mongodb = await mongoose.connect(process.env.MONGODB_URI!);
 
-    isConnected = !!mongodb.connection.readyState;
+    isConnected = Boolean(mongodb.connection.readyState);
 };
 
-const db = {
-    connect,
-    isConnected,
-};
+const db = { connect };
 
 export default db;

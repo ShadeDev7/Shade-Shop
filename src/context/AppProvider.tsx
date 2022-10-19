@@ -3,7 +3,7 @@ import { useReducer, useEffect } from "react";
 import AppContext from "./AppContext";
 import AppReducer from "./AppReducer";
 import initialState from "./initialState";
-import { getCategories } from "services";
+import { getCategories, getProducts } from "services";
 
 const AppProvider = ({ children }: AppProviderProps) => {
     const [state, dispatch] = useReducer(AppReducer, initialState);
@@ -29,17 +29,30 @@ const AppProvider = ({ children }: AppProviderProps) => {
         });
     };
 
+    const setProducts = (products: Product[]) => {
+        dispatch({
+            type: "SET_PRODUCTS",
+            payload: products,
+        });
+    };
+
     useEffect(() => {
         // We use AbortController to prevent double-effect rendering since React 18.
         const abortController = new AbortController();
 
-        getCategories(abortController.signal).then(categories => setCategories(categories));
+        Promise.all([
+            getCategories(abortController.signal),
+            getProducts(abortController.signal),
+        ]).then(values => {
+            setCategories(values[0]);
+            setProducts(values[1]);
+        });
 
         return () => abortController.abort();
     }, []);
 
     return (
-        <AppContext.Provider value={{ ...state, setCategory, setShowCategories }}>
+        <AppContext.Provider value={{ ...state, setCategory, setShowCategories, setProducts }}>
             {children}
         </AppContext.Provider>
     );
