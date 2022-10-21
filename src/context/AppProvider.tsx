@@ -8,6 +8,15 @@ import { getCategories, getProducts } from "services";
 const AppProvider = ({ children }: AppProviderProps) => {
     const [state, dispatch] = useReducer(AppReducer, initialState);
 
+    const setIsLoading = (newValue: boolean) => {
+        setTimeout(() => {
+            dispatch({
+                type: "SET_IS_LOADING",
+                payload: newValue,
+            });
+        }, 1000);
+    };
+
     const setCategories = (categories: Category[]) => {
         dispatch({
             type: "SET_CATEGORIES",
@@ -46,6 +55,8 @@ const AppProvider = ({ children }: AppProviderProps) => {
         ]).then(values => {
             setCategories(values[0]);
             setProducts(values[1]);
+
+            setIsLoading(false);
         });
 
         return () => abortController.abort();
