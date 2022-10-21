@@ -46,20 +46,12 @@ const AppProvider = ({ children }: AppProviderProps) => {
     };
 
     useEffect(() => {
-        // We use AbortController to prevent double-effect rendering since React 18.
-        const abortController = new AbortController();
-
-        Promise.all([
-            getCategories(abortController.signal),
-            getProducts(abortController.signal),
-        ]).then(values => {
+        Promise.all([getCategories(), getProducts()]).then(values => {
             setCategories(values[0]);
             setProducts(values[1]);
 
             setIsLoading(false);
         });
-
-        return () => abortController.abort();
     }, []);
 
     return (
